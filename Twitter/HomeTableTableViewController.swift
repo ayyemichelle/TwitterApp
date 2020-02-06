@@ -24,8 +24,9 @@ class HomeTableTableViewController: UITableViewController {
     
     // function to pull tweets from API
     @objc func loadTweets(){
+        numberOfTweets = 20
         let url = "https://api.twitter.com/1.1/statuses/home_timeline.json"
-        let params = ["count" : 20]
+        let params = ["count" : numberOfTweets]
         // call API
         TwitterAPICaller.client?.getDictionariesRequest(url: url, parameters: params, success: { (tweets: [NSDictionary]) in
             // clean list
@@ -42,6 +43,35 @@ class HomeTableTableViewController: UITableViewController {
         }, failure: { (Error) in
             print("Could not retrieve tweets!")
         })
+    }
+    
+    // function that adds when scrolled down
+    func loadMoreTweets(){
+        let url = "https://api.twitter.com/1.1/statuses/home_timeline.json"
+        numberOfTweets += 20 // increments of 20
+        let params = ["count": numberOfTweets]
+        TwitterAPICaller.client?.getDictionariesRequest(url: url, parameters: params, success: { (tweets: [NSDictionary]) in
+            // clean list
+            self.tweetArray.removeAll()
+            // store tweets response in container
+            for tweet in tweets{
+                self.tweetArray.append(tweet)
+            }
+            // always reload data with code
+            self.tableView.reloadData()
+            // end refreshing
+            self.myRefreshControl.endRefreshing()
+            
+        }, failure: { (Error) in
+            print("Could not retrieve tweets!")
+        })
+    }
+    
+    // when user gets to end of page, load more tweets
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath){
+        if(indexPath.row + 1 == tweetArray.count){
+            loadMoreTweets()
+        }
     }
     
     // create action for logout button
