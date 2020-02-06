@@ -10,10 +10,35 @@ import UIKit
 
 class HomeTableTableViewController: UITableViewController {
 
+    var tweetArray = [NSDictionary]()
+    var numberOfTweets : Int!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadTweets()
         
     }
+    
+    // function to pull tweets from API
+    func loadTweets(){
+        let url = "https://api.twitter.com/1.1/statuses/home_timeline.json"
+        let params = ["count" : 10]
+        // call API
+        TwitterAPICaller.client?.getDictionariesRequest(url: url, parameters: params, success: { (tweets: [NSDictionary]) in
+            // clean list
+            self.tweetArray.removeAll()
+            // store tweets response in container
+            for tweet in tweets{
+                self.tweetArray.append(tweet)
+            }
+            // always reload data with code
+            self.tableView.reloadData()
+            
+        }, failure: { (Error) in
+            print("Could not retrieve tweets!")
+        })
+    }
+    
     // create action for logout button
     @IBAction func onLogout(_ sender: Any) {
         // logout of twitter
@@ -24,18 +49,32 @@ class HomeTableTableViewController: UITableViewController {
         UserDefaults.standard.set(false, forKey: "userLoggedIn")
         
     }
-    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tweetCell", for: indexPath) as! TweetCellTableViewCell
+        
+        // set label views
+        let user = tweetArray[indexPath.row]["user"] as! NSDictionary
+        cell.usernameLabel.text = user["name"] as? String
+        cell.tweetContentLabel.text = tweetArray[indexPath.row]["text"] as? String
+        // set profile image view
+        let imageUrl = URL(string: (user["profile_image_url_https"] as? String)!)
+        let data = try? Data(contentsOf: imageUrl!)
+        if let imageData = data {
+            cell.profileImageView.image = UIImage(data: imageData)
+        }
+        return cell
+    }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        // #warning Incomplete implementation, return the number of rows per section
+        return tweetArray.count
     }
 
     /*
