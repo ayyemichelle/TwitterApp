@@ -18,8 +18,10 @@ class HomeTableTableViewController: UITableViewController {
     @IBAction func onLogout(_ sender: Any) {
         // logout of twitter
         TwitterAPICaller.client?.logout()
-        // go back to login
+        // go back to login screen 
         self.dismiss(animated: true, completion: nil)
+        // set user default to false
+        UserDefaults.standard.set(false, forKey: "userLoggedIn")
         
     }
     
