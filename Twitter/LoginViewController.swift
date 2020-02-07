@@ -27,7 +27,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func onLoginButton(_ sender: Any) {
         // this will run anytime login button is tapped
-        let url = "https://api.twitter.com/oauth/request_token"
+        let url = TwitterAPIUrl.oauthURL.rawValue
         TwitterAPICaller.client?.login(url: url, success: {
             // write note in memory that user already logged in
             UserDefaults.standard.set(true, forKey: "userLoggedIn")

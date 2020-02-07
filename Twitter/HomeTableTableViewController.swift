@@ -25,10 +25,10 @@ class HomeTableTableViewController: UITableViewController {
     // function to pull tweets from API
     @objc func loadTweets(){
         numberOfTweets = 20
-        let url = "https://api.twitter.com/1.1/statuses/home_timeline.json"
+        let url = TwitterAPIUrl.homeTimelineURL.rawValue
         let params = ["count" : numberOfTweets]
         // call API
-        TwitterAPICaller.client?.getDictionariesRequest(url: url, parameters: params, success: { (tweets: [NSDictionary]) in
+        TwitterAPICaller.client?.getDictionariesRequest(url: url, parameters: params as [String : Any], success: { (tweets: [NSDictionary]) in
             // clean list
             self.tweetArray.removeAll()
             // store tweets response in container
@@ -47,10 +47,10 @@ class HomeTableTableViewController: UITableViewController {
     
     // function that adds when scrolled down
     func loadMoreTweets(){
-        let url = "https://api.twitter.com/1.1/statuses/home_timeline.json"
+        let url = TwitterAPIUrl.homeTimelineURL.rawValue
         numberOfTweets += 20 // increments of 20
         let params = ["count": numberOfTweets]
-        TwitterAPICaller.client?.getDictionariesRequest(url: url, parameters: params, success: { (tweets: [NSDictionary]) in
+        TwitterAPICaller.client?.getDictionariesRequest(url: url, parameters: params as [String : Any], success: { (tweets: [NSDictionary]) in
             // clean list
             self.tweetArray.removeAll()
             // store tweets response in container
