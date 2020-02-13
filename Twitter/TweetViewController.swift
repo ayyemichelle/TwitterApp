@@ -46,7 +46,13 @@ class TweetViewController: UIViewController, UITextViewDelegate {
        // Allow or disallow the new text
         let newText = NSString(string: textView.text!).replacingCharacters(in: range, with: text)
         // update label
-        charCountLabel.text = "Character count: \(newText.count)"
+        let charRemainaing = characterLimit - newText.count
+        if (charRemainaing <= 20) {
+            charCountLabel.textColor = UIColor.red
+        }else{
+            charCountLabel.textColor = UIColor.systemGray
+        }
+        charCountLabel.text = "\(charRemainaing)/140"
         return newText.count < characterLimit
         
     }

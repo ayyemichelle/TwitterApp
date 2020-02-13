@@ -169,8 +169,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Character count: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wh1-XS-77v" userLabel="Character count">
-                                <rect key="frame" x="229.5" y="212" width="105.5" height="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="140/140" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wh1-XS-77v" userLabel="Character count">
+                                <rect key="frame" x="305" y="212" width="60" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="EVR-Fk-1F0"/>
+                                    <constraint firstAttribute="height" constant="50" id="mTd-NR-LkJ"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -178,12 +182,12 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="erJ-3e-4GV" firstAttribute="trailing" secondItem="Wh1-XS-77v" secondAttribute="trailing" constant="40" id="4fI-ZM-vnQ"/>
                             <constraint firstItem="duS-rU-Tdl" firstAttribute="top" secondItem="erJ-3e-4GV" secondAttribute="top" id="COf-Qx-aLD"/>
                             <constraint firstItem="erJ-3e-4GV" firstAttribute="trailing" secondItem="duS-rU-Tdl" secondAttribute="trailing" id="WgR-Cl-elt"/>
                             <constraint firstItem="erJ-3e-4GV" firstAttribute="bottom" secondItem="duS-rU-Tdl" secondAttribute="bottom" constant="431" id="Wyz-rp-nf8"/>
                             <constraint firstItem="duS-rU-Tdl" firstAttribute="leading" secondItem="erJ-3e-4GV" secondAttribute="leading" id="eFY-oH-noX"/>
                             <constraint firstItem="Wh1-XS-77v" firstAttribute="top" secondItem="erJ-3e-4GV" secondAttribute="top" constant="156" id="oHf-dY-5kj"/>
+                            <constraint firstItem="erJ-3e-4GV" firstAttribute="trailing" secondItem="Wh1-XS-77v" secondAttribute="trailing" constant="10" id="tR8-xV-zpA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="erJ-3e-4GV"/>
                     </view>
