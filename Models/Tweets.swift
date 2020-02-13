@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+struct Tweet {
+    let username : String
+    let text : String
+}

@@ -11,5 +11,7 @@ import Foundation
 enum TwitterAPIUrl : String {
     case oauthURL = "https://api.twitter.com/oauth/request_token"
     case homeTimelineURL = "https://api.twitter.com/1.1/statuses/home_timeline.json"
-    
+    case postTweetURL = "https://api.twitter.com/1.1/statuses/update.json"
+    case favoriteTweetURL = "https://api.twitter.com/1.1/favorites/create.json"
+    case unfavoriteTweetURL = "https://api.twitter.com/1.1/favorites/destroy.json"
 }
