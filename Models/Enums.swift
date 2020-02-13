@@ -14,4 +14,6 @@ enum TwitterAPIUrl : String {
     case postTweetURL = "https://api.twitter.com/1.1/statuses/update.json"
     case favoriteTweetURL = "https://api.twitter.com/1.1/favorites/create.json"
     case unfavoriteTweetURL = "https://api.twitter.com/1.1/favorites/destroy.json"
+    case retweetURL = "https://api.twitter.com/1.1/statuses/retweet/:id.json"
+    case unretweetURL = "https://api.twitter.com/1.1/statuses/unretweet/:id.json"
 }
